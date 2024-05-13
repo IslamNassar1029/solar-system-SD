@@ -1,4 +1,4 @@
-# name: Docker Hub Login
+# name: Login
 # on: push
 # jobs:
 #   login:

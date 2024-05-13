@@ -1,4 +1,4 @@
-# name: Print README
+# name: PrintREADME
 # on: push  
 # jobs:
 #   print-readme:
