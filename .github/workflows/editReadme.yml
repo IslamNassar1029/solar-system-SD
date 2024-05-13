@@ -1,0 +1,28 @@
+name: Edit README
+
+on:
+  push:
+jobs:
+  edit-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Read README content
+        id: read_readme
+        run: |
+          readme_content=$(cat README.md)
+          echo "::set-output name=readme_content::$readme_content"
+      
+      - name: Modify README content
+        run: |
+          new_content="${{ steps.read_readme.outputs.readme_content }}"
+          new_content+="\n\nThis is a new line added at the end. Last edited by: ${GITHUB_ACTOR}"
+          echo -e "$new_content" > README.md
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add README.md
+          git commit -m "Append content to README"
+          git push
