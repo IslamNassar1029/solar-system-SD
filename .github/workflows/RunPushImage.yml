@@ -14,7 +14,7 @@ jobs:
         env: 
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          IMAGE_NAME: ahmedelbanna/devops
+          IMAGE_NAME: islamnassar/firstImage
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker build -t $IMAGE_NAME .
