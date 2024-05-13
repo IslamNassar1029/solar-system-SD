@@ -1,31 +1,31 @@
-name: Edit README
+# name: Edit README
 
-on:
-  push:
-    branches:
-      - main  # Adjust this to your default branch name if it's different
+# on:
+#   push:
+#     branches:
+#       - main  # Adjust this to your default branch name if it's different
 
-jobs:
-  edit-readme:
-    runs-on: ubuntu-latest
+# jobs:
+#   edit-readme:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Use the latest stable version of the checkout action
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2  # Use the latest stable version of the checkout action
 
-      - name: Read README content
-        id: read_readme
-        run: |
-          readme_content=$(cat README.md)
-          echo "::set-output name=readme_content::$readme_content"
+#       - name: Read README content
+#         id: read_readme
+#         run: |
+#           readme_content=$(cat README.md)
+#           echo "::set-output name=readme_content::$readme_content"
 
-      - name: Modify README content
-        run: |
-          new_content="${{ steps.read_readme.outputs.readme_content }}"
-          new_content+="\n\nThis is a new line added at the end. Last edited by: ${{ github.actor }}"
-          echo -e "$new_content" > README.md
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add README.md
-          git commit -m "Append content to README" || true  # Use `|| true` to avoid failing when there are no changes
-          git push
+#       - name: Modify README content
+#         run: |
+#           new_content="${{ steps.read_readme.outputs.readme_content }}"
+#           new_content+="\n\nThis is a new line added at the end. Last edited by: ${{ github.actor }}"
+#           echo -e "$new_content" > README.md
+#           git config --global user.email "actions@github.com"
+#           git config --global user.name "GitHub Actions"
+#           git add README.md
+#           git commit -m "Append content to README" || true  # Use `|| true` to avoid failing when there are no changes
+#           git push
